@@ -33,9 +33,9 @@ public class HelloController {
         int a = 100/0;
         return id;
     }
-
+//    /viewItems/111/222
     @RequestMapping("/viewItems/{id}")
-    public void viewItems(@PathVariable("id") String id, Model model) throws Exception{
+    public void viewItems(@PathVariable("id") int id, Model model) throws Exception{
         System.out.println("=========viewItems id===="+ id);
     }
 
