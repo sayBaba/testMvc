@@ -87,7 +87,7 @@ public class TestModuleAndView {
 
         @RequestMapping("/item/login")
         public void testModel(LoginReq loginReq){
-        System.out.println("----================-------"+loginReq.getUserName());
+          System.out.println("----================-------"+loginReq.getUserName());
             System.out.println("----================-------"+loginReq.getPrice());
             System.out.println("----================-------"+loginReq.getItem_id());
 
