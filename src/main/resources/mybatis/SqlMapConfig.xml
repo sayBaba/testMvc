@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE configuration
-        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+        <!DOCTYPE configuration
+                PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+                "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 
-    <settings>
-        <!-- 打开全局缓存开关（二级缓存）默认值就是 true -->
-        <setting name="cacheEnabled" value="true"/>
-    </settings>
+<settings>
+    <!-- 打开全局缓存开关（二级缓存）默认值就是 true -->
+    <setting name="cacheEnabled" value="true"/>
+</settings>
 
-    <mappers>
-        <!-- 通过 resource 方法一次加载一个映射文件 -->
-        <mapper resource="mapper/TestMapper.xml"/>
-    </mappers>
+<mappers>
+    <!-- 通过 resource 方法一次加载一个映射文件 -->
+    <mapper resource="mapper/TestMapper.xml"/>
+</mappers>
 
 </configuration>

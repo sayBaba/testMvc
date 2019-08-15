@@ -46,9 +46,9 @@
     </bean>
 
     <!--注解开启事务 -->
+
+
+
     <tx:annotation-driven transaction-manager="transactionManager" />
-
-
-
 
 </beans>
