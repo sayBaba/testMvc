@@ -11,7 +11,9 @@
         http://www.springframework.org/schema/context/spring-context.xsd ">
 
     <!--扫描controller注解,多个包中间使用半角逗号分隔 -->
-    <context:component-scan base-package="com.hz.testMvc.*" />
+
+    <context:component-scan base-package="com.hz.testMvc.controller" />
+
 
     <!--替代注解处理器和适配器的配置 -->
     <mvc:annotation-driven />
@@ -27,8 +29,7 @@
 
 
 
-<!--
-    &lt;!&ndash; 静态资源映射 &ndash;&gt;-->
+<!-- &lt;!&ndash; 静态资源映射 &ndash;&gt;-->
     <mvc:resources mapping="/js/**" location="/WEB-INF/js/" />
     <mvc:resources mapping="/css/**" location="/WEB-INF/css/" />
     <mvc:resources mapping="/fonts/**" location="/WEB-INF/fonts/" />
@@ -58,6 +59,16 @@
         <property name="maxUploadSize">
             <value>5242880</value>
         </property>
+    </bean>
+
+    <!--国际化配置 -->
+    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver" />
+    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+        <!-- 国际化信息所在的文件名 -->
+        <property name="basename" value="messages" />
+        <!-- 如果在国际化资源文件中找不到对应代码的信息，就用这个代码作为名称  -->
+        <property name="useCodeAsDefaultMessage" value="true" />
+        <property name="defaultEncoding" value="UTF-8" />
     </bean>
 
 

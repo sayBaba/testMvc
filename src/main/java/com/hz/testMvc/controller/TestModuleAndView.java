@@ -94,6 +94,14 @@ public class TestModuleAndView {
 
 //        User user = (User) model.asMap().get("user");
 //        System.out.println("----"+user.getName());
+    }
+    @RequestMapping("/rdt")
+    public String rdt(){
+        return " return \"redirect:/ss\":/ss";
+    }
 
+    @RequestMapping("/ss")
+    public String ss(){
+       return "success";
     }
 }

@@ -37,7 +37,7 @@ public class UploadController {
         try {
             //保存的路径
            System.out.println("fileName："+file.getOriginalFilename());
-            System.out.println("getOriginalFilename，文件名："+ file.getOriginalFilename());
+           System.out.println("getOriginalFilename，文件名："+ file.getOriginalFilename());
 
             os = new FileOutputStream(filePath+file.getOriginalFilename());
 //            if(os == null){
@@ -69,7 +69,7 @@ public class UploadController {
                 e.printStackTrace();
             }
 
-        }
+    }
         long  endTime=System.currentTimeMillis();
         System.out.println("方法一的运行时间："+String.valueOf(endTime-startTime)+"ms");
 
