@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- mapper:根标签，namespace：命名空间，随便写，一般保证命名空间唯一 -->
+<mapper namespace="com.hz.testMvc.dao.IUserMapper">
+
+    <!-- 分页查询-->
+    <select id="selectUserInfo" parameterType="java.lang.Integer" resultType="com.hz.testMvc.model.SysUser">
+          select USER_ID as userId,LOGIN_NAME as loginName,LOGIN_PWD as loginPwd,
+                 USER_NAME as userName,STATUS as status,EMAIL as email,ADDRESS as address,REMARK as remark
+          from sys_user LIMIT #{page,jdbcType = INTEGER},#{limit,jdbcType = INTEGER}
+
+    </select>
+
+    <!-- 分页查询统计-->
+    <select id="countUserNum" resultType="java.lang.Integer">
+        select count(1) from sys_user
+    </select>
+
+</mapper>

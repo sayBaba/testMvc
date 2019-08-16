@@ -31,7 +31,6 @@
     </bean>
 
 
-
     <!--- dao注入-->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
@@ -46,8 +45,6 @@
     </bean>
 
     <!--注解开启事务 -->
-
-
 
     <tx:annotation-driven transaction-manager="transactionManager" />
 

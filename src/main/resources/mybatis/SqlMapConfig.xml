@@ -12,6 +12,8 @@
 <mappers>
     <!-- 通过 resource 方法一次加载一个映射文件 -->
     <mapper resource="mapper/TestMapper.xml"/>
+    <mapper resource="mapper/SysUserMapper.xml"/>
+
 </mappers>
 
 </configuration>
