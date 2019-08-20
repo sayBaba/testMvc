@@ -1,15 +1,20 @@
 package com.hz.testMvc.controller;
 
-import com.hz.testMvc.req.PageReq;
-import com.hz.testMvc.resp.ResponseData;
-import com.hz.testMvc.service.IUserService;
+
+import com.hz.testMvc.model.UserBean;
+import com.hz.testMvc.service.impl.TestServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+
+import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * 用户查询控制器
@@ -19,33 +24,66 @@ public class UserController {
 
     private final static Logger logger = LoggerFactory.getLogger(UserController.class);
 
-    @Autowired
-    private IUserService iUserService;
+    @Resource
+    private TestServiceImpl testServiceImpl;
 
-    @RequestMapping("/showUser.do")
-    public String showUser(){
+    @RequestMapping("/toUserList")
+    public String toUserList(){
         return "UserList";
     }
 
     @ResponseBody
-    @RequestMapping("/findUserListServlet")
-    public ResponseData findUserListServlet(@RequestParam(value="page") String page, @RequestParam("limit") String limit){
-        logger.info("----接受到-findUserListServlet 请求,page:{},limit:{}",page,limit);
+    @RequestMapping("/queryLike")
+    public List<UserBean> queryLike(String name){
+        //接收条件查询
+       return testServiceImpl.queryLike(name);
+    }
 
-        ResponseData responseData = null;
-        try {
-            PageReq req = new PageReq();
-            req.setPage(page);
-            req.setLimit(limit);
-            responseData = iUserService.getUserInfo(req);
-        } catch (Exception e) {
-            logger.error("Exception",e);
-            responseData.setMsg("请求超时");
-            responseData.setCode("-1"); //代表请求失败
-            return responseData;
-        }
-        return responseData;
+    @ResponseBody
+    @RequestMapping("/queryLimit")
+    public List<UserBean> queryLimit(@RequestParam("page") Integer page, Integer limit){
+
+        //分页查询
+        List<UserBean> listLimit = testServiceImpl.queryLimit(page, limit);
+        return listLimit;
     }
 
 
+    @RequestMapping("/insertOne")
+    public String insertOne(UserBean userBean){
+        try{
+            int count = testServiceImpl.insertOne(userBean);
+            if(count<1)
+                throw new RuntimeException("增加失败");
+        }catch(Exception ex){return "errMsg";}
+
+        return "success";
+    }
+
+    @RequestMapping("/deleteOne")
+    public String deleteOne(Integer id){
+        try{
+            int count = testServiceImpl.deleteOne(id);
+            if(count<1)
+                throw new RuntimeException("增加失败");
+        }catch(Exception ex){return "errMsg";}
+
+        return "success";
+    }
+
+    @RequestMapping("/updateOne")
+    public String updateOne(UserBean userBean){
+        try{
+            int count = testServiceImpl.updateOne(userBean);
+            if(count<1)
+                throw new RuntimeException("增加失败");
+        }catch(Exception ex){return "errMsg";}
+
+        return "success";
+    }
+
+
+//    public Integer deleteSome(Integer[] ids){
+//
+//    }
 }

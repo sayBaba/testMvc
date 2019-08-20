@@ -1,6 +1,6 @@
 package com.hz.testMvc.model;
 
-public class SysUser {
+public class UserBean {
 
     private String userId;
     private String loginName;

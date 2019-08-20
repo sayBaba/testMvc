@@ -36,7 +36,7 @@
 <div id="dateTable"  lay-filter="dateTable"></div>
 
 <!--添加用户-->
-<form class="layui-form layui-form-pane" action="" hidden="hidden" id="adduser_form">
+<form class="layui-form layui-form-pane" action="${pageContext.request.contextPath}/insertOne" hidden="hidden" id="adduser_form">
 
     <div class="layui-form-item">
         <div class="layui-inline">
@@ -196,7 +196,7 @@
                 ]
             ],
             id: 'dataCheck',
-            url: '${pageContext.request.contextPath}/findUserListServlet',
+            url: '${pageContext.request.contextPath}/queryLimit',
             //url: '../json/data_table.json',
             method: 'get',
             page: true,
@@ -255,7 +255,9 @@
             	
                 var flag = false;
 
-                $.post("${pageContext.request.contextPath}/addUserServletAjax", $("#adduser_form").serialize(), function (reslut) {
+                $.post("${pageContext.request.contextPath}/insertOne",
+                    $("#adduser_form").serialize(),
+                    function (reslut) {
 
                     // layer.msg(reslut,);
                     if (reslut == 1) {
@@ -384,7 +386,8 @@
                     }
 
                     //开启ajax请求 禁用
-                    $.get("${pageContext.request.contextPath}/stopOrStartAccountServlet?option=start&userId="+data.userId,function (reslut) {
+                    $.get("${pageContext.request.contextPath}/stopOrStartAccountServlet?option=start&userId="+data.userId,
+                        function (reslut) {
                         if(reslut>0)
                         {
                             //obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
@@ -455,7 +458,9 @@
                     yes:function () {
 
                         //确定按钮的操作 $("#editRole_form").serialize():将整个表单参数序列化 后台可以根据name直接获取
-                        $.post("${pageContext.request.contextPath}/updateRoleByUser?",$("#editRole_form").serialize(),function (result) {
+                        $.post("${pageContext.request.contextPath}/updateRoleByUser?",
+                            $("#editRole_form").serialize(),
+                            function (result) {
 
                             if(result==1)
                             {

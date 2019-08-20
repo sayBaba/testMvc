@@ -5,8 +5,21 @@
 <!-- mapper:根标签，namespace：命名空间，随便写，一般保证命名空间唯一 -->
 <mapper namespace="com.hz.testMvc.dao.TestMapper">
 
-    <select id="testQuery" resultType="java.lang.String">
-            select id from tb_user WHERE  ID = 1
+    <select id="queryLike" resultType="com.hz.testMvc.model.UserBean">
+        SELECT USER_ID AS userId,
+                LOGIN_NAME AS loginName,
+                LOGIN_PWD AS loginPwd,
+                USER_NAME AS userName,
+                STATUS AS STATUS,
+                EMAIL AS email,
+                ADDRESS AS address,
+                REMARK AS remark
+        FROM sys_user
+        <where>
+            <if test="${name}!=null">
+                and loginName = '%'#{name}'%'
+            </if>
+        </where>
     </select>
 
 
