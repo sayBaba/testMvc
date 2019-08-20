@@ -2,7 +2,10 @@ package com.hz.testMvc.controller;
 
 import com.hz.testMvc.req.ListData;
 import com.hz.testMvc.req.LoginReq;
+import com.hz.testMvc.req.User;
 import com.hz.testMvc.resp.LoginResp;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +16,10 @@ import java.util.List;
 @RestController
 @RequestMapping("/say")
 public class HelloController {
+
+
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
 
     /**
      * hello
@@ -53,5 +60,16 @@ public class HelloController {
         loginResp.setName("xiaozhang");
         loginResp.setUserId("789808080");
         return  loginResp;
+    }
+
+
+    @ResponseBody
+    @RequestMapping("/testMq")
+    public User testMq(){
+        User user = new User();
+        user.setAge(18);
+        user.setName("666");
+        rabbitTemplate.convertAndSend("info", user);
+        return  user;
     }
 }
